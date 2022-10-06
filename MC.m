@@ -12,7 +12,9 @@ for i = 1:size(subfolder)
         end
     end
 end
+
 %size(to_do_list,2) % showing total number of folders for processing
+
 for i = 1:size(to_do_list,2)
     %i %processing the i-th folder
     sub_file = dir(fullfile(path,to_do_list{i}));
