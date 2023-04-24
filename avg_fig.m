@@ -1,7 +1,5 @@
-%% Averaging frames to obtain a reference figure
-% change line 4 & line 13 to specify your data location!
 clear all;
-path = 'W:\Mingxuan\WF\data\000C9522CA71'; % specify path with motion corrected WF data for calculating the averaged figure of all frames
+path = 'X:\Mingxuan\WF\data\000C95238D37';
 if ~exist(fullfile(path,'avg'), 'dir')
    mkdir(fullfile(path,'avg'));
 end
@@ -10,13 +8,15 @@ to_do_list = cell(0);
 for i = 1:size(subfolder)
     sub_name = subfolder(i).name;
     if size(sub_name,2) == 19
-        if str2num(strcat(sub_name(1:4),sub_name(6:7),sub_name(9:10))) >= 20220702 % date range for data to be processed
+        if str2num(strcat(sub_name(1:4),sub_name(6:7),sub_name(9:10))) >= 20221001
             to_do_list{end+1} = sub_name;
         end
     end
 end
+size(to_do_list,2)
 for i = 1:size(to_do_list,2)
     clearvars -except i to_do_list path
+    i
     data = readMultipageTiff(fullfile(path,to_do_list{i},'MC00001.tiff'));
     files = dir(fullfile(path,to_do_list{i}));
     for j = 1:size(files)
